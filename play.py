@@ -18,24 +18,42 @@ time.sleep(3)
 # print("moved...")
 # choice_last = None
 # choice = None
-while True:
-	for direction in directions:
-		choice = random.choice(direction)
-		# if choice == choice_last:
+# while True:
+# 	for direction in directions:
+# 		choice = random.choice(direction)
+# 		# if choice == choice_last:
 
-		ActionChains(driver).send_keys(choice).perform()
-		# time.sleep(2)
-		# choice_last = choice
+# 		ActionChains(driver).send_keys(choice).perform()
+# 		# time.sleep(2)
+# 		# choice_last = choice
 
-# restartElem = driver.find_element_by_link_text('New Game')
-restartElem = driver.find_element_by_link_text('Try again')
-# restartElem.click()
-game_over = false
 
-while not game_over:
-	if restartElem:
+def isOver(browser):
+	try:
+		game_over = browser.find_element_by_class_name('game-over')
+		print(type(game_over))
+		return game_over
+	except:
+		print("not over yet")
+
+
+game_ended = False
+i = 0
+while not game_ended:
+	game_ended = isOver(driver)
+	print("i: %s" % i)
+	
+	if game_ended:
+		print('game over boi!')
+		time.sleep(3)
+		i += 1
+		game_ended = True if (i==2) else False
+		print('restarting...')
+		restartElem = driver.find_element_by_link_text('Try again')
 		restartElem.click()
 
 	for direction in directions:
 		choice = random.choice(direction)
 		ActionChains(driver).send_keys(choice).perform()
+
+
