@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import time, random
 
-driver = webdriver.Chrome('../atbs_ch11/drivers/chromedriver')
+driver = webdriver.Chrome('assets/chromedriver')
 driver.get('https://gabrielecirulli.github.io/2048/')
 
 time.sleep(2)	# wait for page to load
