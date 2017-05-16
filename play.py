@@ -34,7 +34,7 @@ def is_over(browser):
 		pass
 
 
-game_ended = False
+game_ended = False #set flag if game has ended
 i = 0
 while not game_ended:
 	game_ended = is_over(driver)
